@@ -1,11 +1,16 @@
 #pragma once
+#include "Check.h"
 #include "Invoker.h"
+#include <cstdarg>
 namespace component {
-	template<typename... Invoker_Type>
-	class Component {
+	//every atomic component or composited component should implement this interface
+	//return type | parameters' types
+	class IComponent:public component::ICheckable { 
 	public:
-		virtual call(size_t idx) = 0;
-	private:
-		Invoker<Invoker_Type...> invoker;
+		//this function is used to doing some vertification
+		virtual void check(bool* ret, ...) = 0;
+		//ret: return | ...:parameters
+		virtual void* call(size_t idx,...) = 0;
+		virtual ~IComponent() {};
 	};
 };

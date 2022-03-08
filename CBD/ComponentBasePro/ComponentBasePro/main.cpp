@@ -2,6 +2,7 @@
 #include <tuple>
 #include "Interface.h"
 #include "Invoker.h"
+#include "SimpleArithmeticAtomicComponent.h"
 //template<typename T>
 //std::tuple<T> extractTuple(T v)
 //{
@@ -50,4 +51,9 @@ int main(){
 	std::cout << invoker.invoke<3,int>() << std::endl;
 	invoker.resetParameters<3, int, int>(6, 7);
 	std::cout << invoker.invoke<3, int>() << std::endl;
+
+	void* res = nullptr;
+	component::IComponent* arithCom = new component::SimpleArithmeticAtomicComponent();
+	res = arithCom->call(3, 4., 2.);
+	std::cout << *((double*)res);
 }
