@@ -43,6 +43,11 @@ namespace component {
 		{
 			return std::get<N>(_function_list).run();
 		}
+		template<size_t N,typename... paramsType>
+		void resetParameters(paramsType... args)
+		{
+			std::get<N>(_function_list).resetParameters(std::tuple<paramsType...>(args...));
+		}
 	private:
 		std::tuple<inters...> _function_list;
 		size_t _func_nums;

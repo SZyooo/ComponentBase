@@ -47,5 +47,7 @@ int main(){
 		component::Interface<void>,
 		component::Interface<int,int,int> >
 		invoker(itf1,itf2,itf3,itf4);
-	std::cout << invoker.invoke<3,int>();
+	std::cout << invoker.invoke<3,int>() << std::endl;
+	invoker.resetParameters<3, int, int>(6, 7);
+	std::cout << invoker.invoke<3, int>() << std::endl;
 }

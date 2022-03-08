@@ -13,13 +13,16 @@ namespace component {
 			return _name;
 		}
 		Interface(std::string name,func fun,params... args)
-			:_name(name),params(args...),function(fun) {}
+			:_name(name),_params(args...),_function(fun) {}
 		returnType run() {
-			return function(params);
+			return _function(_params);
+		}
+		void resetParameters(std::tuple<params...> args) const {
+			_params = args;
 		}
 	private:
 		std::string _name;
-		std::tuple<params...> params;
-		func function;
+		mutable std::tuple<params...> _params;
+		func _function;
 	};
 };
