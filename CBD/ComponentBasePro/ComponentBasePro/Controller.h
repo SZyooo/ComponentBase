@@ -34,7 +34,7 @@ namespace calculator {
 		{
 			void* exp = getComponents()[0]->call(getIndices()[0]);
 			void* res = getComponents()[1]->call(getIndices()[1], true,*((std::string*)exp));
-			getComponents()[2]->call(getIndices()[2], *((double*)res));
+			getComponents()[2]->call(getIndices()[2], *((std::string*)res));
 			delete exp;
 			exp = nullptr;
 			delete res;

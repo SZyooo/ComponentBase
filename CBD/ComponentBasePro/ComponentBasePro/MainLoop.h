@@ -25,7 +25,7 @@ namespace calculator {
 			va_end(args);
 			_expression = expression;
 			doLoop(flag);
-			return new double(-807.);
+			return new std::string(std::to_string(-3.8));
 		}
 
 	private:

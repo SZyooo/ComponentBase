@@ -6,18 +6,18 @@
 
 
 namespace calculator {
-	void output(std::tuple<double> exp)
+	void output(std::tuple<std::string> exp)
 	{
 		std::cout << std::get<0>(exp) << std::endl;
 	}
 
-	typedef component::Interface<void,double> output_res;
+	typedef component::Interface<void,std::string> output_res;
 	class OutputComponent
 		:public component::AtomicComponent<output_res>
 	{
 	public:
 		OutputComponent()
-			:AtomicComponent<output_res>(component::Invoker<output_res>(component::Interface<void,double>("output", output, 0.)))
+			:AtomicComponent<output_res>(component::Invoker<output_res>(component::Interface<void,std::string>("output", output, "")))
 		{}
 		virtual void check(bool* ret, ...)
 		{
@@ -34,9 +34,9 @@ namespace calculator {
 			}
 			va_list args;
 			va_start(args, idx);
-			double value = va_arg(args,double);
+			std::string value = va_arg(args,std::string);
 			va_end(args);
-			getInvoker().resetParameters<0, double>(value);
+			getInvoker().resetParameters<0, std::string>(value);
 			getInvoker().invoke<0,void>();
 		}
 	private:
