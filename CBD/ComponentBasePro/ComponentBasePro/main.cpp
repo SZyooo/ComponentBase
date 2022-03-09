@@ -1,8 +1,11 @@
 #include <iostream>
-#include <tuple>
-#include "Interface.h"
-#include "Invoker.h"
-#include "SimpleArithmeticAtomicComponent.h"
+//#include <tuple>
+//#include "Interface.h"
+//#include "Invoker.h"
+//#include "SimpleArithmeticAtomicComponent.h"
+
+#include "Calculator.h"
+#include "Model.h"
 //template<typename T>
 //std::tuple<T> extractTuple(T v)
 //{
@@ -56,4 +59,18 @@ int main(){
 	//component::IComponent* arithCom = new component::SimpleArithmeticAtomicComponent();
 	//res = arithCom->call(3, 4., 2.);
 	//std::cout << *((double*)res);
+
+	calculator::OperationSelect selector({ 
+		new calculator::AdditionComponent(),
+		new calculator::SubtractionComponent(),
+		new calculator::MultiplicationComponent(),
+		new calculator::DivisionComponent()
+		});
+	calculator::MainLoop loop(&selector);
+	calculator::InputComponent in;
+	calculator::OutputComponent out;
+	calculator::Controller controller({ &in,&loop,&out }, {0,0,0});
+	controller.call(0);
+
+
 }

@@ -4,7 +4,7 @@
 #include "CalculatorTools.h"
 
 namespace calculator {
-	class MainLoop :component::Loop {
+	class MainLoop :public component::Loop {
 	public:
 		MainLoop(component::IComponent* l):component::Loop(l){}
 		virtual void check(bool* ret, ...) {

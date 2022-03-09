@@ -32,7 +32,13 @@ namespace calculator {
 		static std::string order;
 		virtual void doSequence()
 		{
-			getComponents()[0]->call(getIndices()[0]);
+			void* exp = getComponents()[0]->call(getIndices()[0]);
+			void* res = getComponents()[1]->call(getIndices()[1], *((std::string*)exp));
+			getComponents()[2]->call(getIndices()[2], *((double*)res));
+			delete exp;
+			exp = nullptr;
+			delete res;
+			res = nullptr;
 		}
 	};
 	std::string calculator::Controller::order = "call_mul";
