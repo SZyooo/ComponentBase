@@ -33,7 +33,7 @@ namespace calculator {
 		virtual void doSequence()
 		{
 			void* exp = getComponents()[0]->call(getIndices()[0]);
-			void* res = getComponents()[1]->call(getIndices()[1], *((std::string*)exp));
+			void* res = getComponents()[1]->call(getIndices()[1], true,*((std::string*)exp));
 			getComponents()[2]->call(getIndices()[2], *((double*)res));
 			delete exp;
 			exp = nullptr;

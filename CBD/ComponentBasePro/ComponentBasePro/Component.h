@@ -11,6 +11,6 @@ namespace component {
 		virtual void check(bool* ret, ...) = 0;
 		//ret: return | ...:parameters
 		virtual void* call(size_t idx,...) = 0;
-		virtual ~IComponent() {};
+		virtual ~IComponent() = 0 {}
 	};
 };

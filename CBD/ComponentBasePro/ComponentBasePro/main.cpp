@@ -60,16 +60,16 @@ int main(){
 	//res = arithCom->call(3, 4., 2.);
 	//std::cout << *((double*)res);
 
-	calculator::OperationSelect selector({ 
+	calculator::OperationSelect* selector = new calculator::OperationSelect({
 		new calculator::AdditionComponent(),
 		new calculator::SubtractionComponent(),
 		new calculator::MultiplicationComponent(),
 		new calculator::DivisionComponent()
 		});
-	calculator::MainLoop loop(&selector);
-	calculator::InputComponent in;
-	calculator::OutputComponent out;
-	calculator::Controller controller({ &in,&loop,&out }, {0,0,0});
+	calculator::MainLoop* loop = new calculator::MainLoop(selector);
+	calculator::InputComponent* in = new calculator::InputComponent;
+	calculator::OutputComponent* out = new calculator::OutputComponent;
+	calculator::Controller controller({ in,loop,out }, {0,0,0});
 	controller.call(0);
 
 
