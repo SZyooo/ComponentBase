@@ -36,24 +36,24 @@ int add(std::tuple<int, int> params)
 	return left + right;
 }
 int main(){
-	component::Interface<void> itf1(std::string("test"), fun1);
-	component::Interface<void> itf2(std::string("row"), fun2);
-	component::Interface<void> itf3(std::string("column"), fun3);
-	int left = 4;
-	int right = 5;
-	component::Interface<int, int, int> itf4(std::string("add"),add,left,right);
-	component::Invoker<
-		component::Interface<void>, 
-		component::Interface<void>, 
-		component::Interface<void>,
-		component::Interface<int,int,int> >
-		invoker(itf1,itf2,itf3,itf4);
-	std::cout << invoker.invoke<3,int>() << std::endl;
-	invoker.resetParameters<3, int, int>(6, 7);
-	std::cout << invoker.invoke<3, int>() << std::endl;
+	//component::Interface<void> itf1(std::string("test"), fun1);
+	//component::Interface<void> itf2(std::string("row"), fun2);
+	//component::Interface<void> itf3(std::string("column"), fun3);
+	//int left = 4;
+	//int right = 5;
+	//component::Interface<int, int, int> itf4(std::string("add"),add,left,right);
+	//component::Invoker<
+	//	component::Interface<void>, 
+	//	component::Interface<void>, 
+	//	component::Interface<void>,
+	//	component::Interface<int,int,int> >
+	//	invoker(itf1,itf2,itf3,itf4);
+	//std::cout << invoker.invoke<3,int>() << std::endl;
+	//invoker.resetParameters<3, int, int>(6, 7);
+	//std::cout << invoker.invoke<3, int>() << std::endl;
 
-	void* res = nullptr;
-	component::IComponent* arithCom = new component::SimpleArithmeticAtomicComponent();
-	res = arithCom->call(3, 4., 2.);
-	std::cout << *((double*)res);
+	//void* res = nullptr;
+	//component::IComponent* arithCom = new component::SimpleArithmeticAtomicComponent();
+	//res = arithCom->call(3, 4., 2.);
+	//std::cout << *((double*)res);
 }

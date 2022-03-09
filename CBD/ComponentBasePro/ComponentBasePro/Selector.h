@@ -3,18 +3,34 @@
 #include <vector>
 namespace component {
 
-	class Selector:component::IComponent {
+	class Selector:public component::IComponent {
 	public:
-		virtual void check(bool& ret, ...) = 0;
-		virtual void call(void* ret,size_t idx, ...) = 0;
-		//it's responsible for choosing a proper component to 
-		virtual component::IComponent& select() = 0;
+		Selector(std::vector<IComponent*> components)
+			:_components(components)
+		{}
+		virtual void check(bool* ret, ...) {}
+		virtual void* call(size_t idx, ...) { return nullptr; }
+		void assignComponents(const std::vector<IComponent*>& components)
+		{
+			for (int i = 0; i < _components.size(); i++)
+			{
+				delete _components[i];
+				_components[i] = nullptr;
+			}
+			_components = components;
+		}
+		~Selector()
+		{
+			for (int i = 0; i < _components.size(); i++)
+			{
+				delete _components[i];
+				_components[i] = nullptr;
+			}
+		}
 	protected:
-		//it's called before the calling of call
-		virtual void preCall() = 0;
-		//it's called after the calling of call
-		virtual void postCall() = 0;
+		std::vector<IComponent*> getComponents() { return _components; }
 	private:
-		std::vector<IComponent&> components;
+		virtual IComponent* doSelect() = 0;
+		std::vector<IComponent*> _components;
 	};
 };
