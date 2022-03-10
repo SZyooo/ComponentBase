@@ -60,17 +60,20 @@ int main(){
 	//res = arithCom->call(3, 4., 2.);
 	//std::cout << *((double*)res);
 
-	calculator::OperationSelect* selector = new calculator::OperationSelect({
-		new calculator::AdditionComponent(),
-		new calculator::SubtractionComponent(),
-		new calculator::MultiplicationComponent(),
-		new calculator::DivisionComponent()
-		});
-	calculator::MainLoop* loop = new calculator::MainLoop(selector);
-	calculator::InputComponent* in = new calculator::InputComponent;
-	calculator::OutputComponent* out = new calculator::OutputComponent;
-	calculator::Controller controller({ in,loop,out }, {0,0,0});
-	controller.call(0);
-
+	//calculator::OperationSelect* selector = new calculator::OperationSelect({
+	//	new calculator::AdditionComponent(),
+	//	new calculator::SubtractionComponent(),
+	//	new calculator::MultiplicationComponent(),
+	//	new calculator::DivisionComponent()
+	//	});
+	//calculator::MainLoop* loop = new calculator::MainLoop(selector);
+	//calculator::InputComponent* in = new calculator::InputComponent;
+	//calculator::OutputComponent* out = new calculator::OutputComponent;
+	//calculator::Controller controller({ in,loop,out }, {0,0,0});
+	//controller.call(0);
+	calculator::CalculatorModel().call(0);
+	std::cout << "input anything to finish:" << std::endl;
+	std::string takeOver;
+	std::cin >> takeOver;
 
 }

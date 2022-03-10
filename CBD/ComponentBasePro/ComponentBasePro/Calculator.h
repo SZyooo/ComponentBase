@@ -9,3 +9,4 @@
 #include "OperationSelector.h"
 #include "Output.h"
 #include "Subtraction.h"
+#include "CalculatorModel.h"

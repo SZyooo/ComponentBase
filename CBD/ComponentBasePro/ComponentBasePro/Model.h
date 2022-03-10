@@ -8,36 +8,26 @@ namespace model{
 		SampleModel(
 			component::IComponent* input,
 			component::IComponent* output,
-			component::Sequencer* sequencer,
 			component::Selector* selector,
 			component::Loop* loop,
-			std::vector<component::IComponent*> select_froms) {
-			selector->assignComponents(select_froms);
+			component::Sequencer* sequencer,
+			std::vector<size_t> call_indices) {
 			loop->assignComponent(selector);
 			sequencer->assignComponents({input,loop,output});
+			sequencer->assignIndices(call_indices);
+			this->_sequencer = sequencer;
 		}
 
-		virtual void check(bool* ret, ...)
-		{
-			va_list args;
-			va_start(args, ret);
-			std::string order = va_arg(args, std::string);
-			va_end(args, ret);
-			if (order == "SampleModel")
-				*ret = true;
-			else
-				*ret = false;
-		}
+		virtual void check(bool* ret, ...) = 0;
 		virtual void* call(size_t idx, ...) = 0;
 		virtual ~SampleModel()
 		{
 			delete _sequencer;
+			_sequencer = nullptr;
 		}
+	protected:
+		IComponent* getSequencer() const { return _sequencer; }
 	private:
 		component::IComponent* _sequencer;
-		component::IComponent* input;
-		component::IComponent* output;
-		component::IComponent* selector;
-		component::IComponent* loop;
 	};
 };

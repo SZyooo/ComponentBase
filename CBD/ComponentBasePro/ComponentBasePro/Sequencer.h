@@ -20,6 +20,10 @@ namespace component {
 			}
 			_components = components;
 		}
+		void assignIndices(const std::vector<size_t>& indices)
+		{
+			_call_indicies = indices;
+		}
 		~Sequencer()
 		{
 			for (int i = 0; i < _components.size(); i++)

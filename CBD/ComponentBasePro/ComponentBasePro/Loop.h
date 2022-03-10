@@ -6,12 +6,13 @@ namespace component {
 	{
 	public:
 		Loop(IComponent* looper)
-			:_loop_component(looper){
-			if (looper == nullptr)
-				throw "NULL LOOPER::cannot init a looper without available component!";
-		}
+			:_loop_component(looper){}
 		virtual void check(bool* ret, ...) {}
-		virtual void* call(size_t idx, ...) { return nullptr; }
+		virtual void* call(size_t idx, ...) { 
+			if (_loop_component == nullptr)
+				throw "NULL LOOPER::loop cannot runs without an available component!";
+			return nullptr; 
+		}
 		void assignComponent(component::IComponent* component_)
 		{
 			if (_loop_component != nullptr)
