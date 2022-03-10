@@ -36,9 +36,11 @@ namespace calculator {
 			va_start(args, idx);
 			std::string value = va_arg(args,std::string);
 			va_end(args);
-			getInvoker().resetParameters<0, std::string>(value);
+			std::string outPutStr = "the result = " + value;
+			getInvoker().resetParameters<0, std::string>(outPutStr);
 			getInvoker().invoke<0,void>();
 		}
+		static const std::string getCallOrder() { return order; }
 	private:
 		static std::string order;
 	};

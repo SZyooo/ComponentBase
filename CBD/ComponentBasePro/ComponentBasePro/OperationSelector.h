@@ -6,7 +6,7 @@ namespace calculator {
 	class OperationSelect :public component::Selector {
 	public:
 		OperationSelect(std::vector<IComponent*> components)
-			:Selector(components) {}
+			:Selector(components),call_order("") {}
 		virtual void check(bool* ret, ...)
 		{
 			va_list args;
@@ -40,7 +40,7 @@ namespace calculator {
 				ans = new double(-1);
 			return ans;
 		}
-		std::string call_order;
+		static const std::string getCallOrder() { return order; }
 	private:
 		virtual IComponent* doSelect() {
 			auto components = getComponents();
@@ -56,6 +56,7 @@ namespace calculator {
 			return nullptr;
 		}
 		static std::string order;
+		std::string call_order;
 	};
 	std::string calculator::OperationSelect::order = "select_operator";
 };

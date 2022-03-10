@@ -28,12 +28,24 @@ namespace calculator {
 			}
 			return nullptr;
 		}
+		static const std::string getCallOrder() { return order; }
 	private:
 		static std::string order;
 		virtual void doSequence()
 		{
 			void* exp = getComponents()[0]->call(getIndices()[0]);
-			void* res = getComponents()[1]->call(getIndices()[1], true,*((std::string*)exp));
+			void* res = nullptr;
+			try {
+				res = getComponents()[1]->call(getIndices()[1], true, *((std::string*)exp));
+			}
+			catch (const char* calc_error)
+			{
+				res = new std::string(calc_error);
+			}
+			catch (std::string calc_error)
+			{
+				res = new std::string(calc_error);
+			}
 			getComponents()[2]->call(getIndices()[2], *((std::string*)res));
 			delete exp;
 			exp = nullptr;

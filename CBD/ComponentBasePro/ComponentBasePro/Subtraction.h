@@ -36,6 +36,7 @@ namespace calculator {
 			ans = new double(getInvoker().invoke<0, double>());
 			return ans;
 		}
+		static const std::string getCallOrder() { return order; }
 	private:
 		static std::string order;
 	};

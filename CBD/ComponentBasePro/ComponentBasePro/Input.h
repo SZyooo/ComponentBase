@@ -37,6 +37,7 @@ namespace calculator {
 			}
 			return ans;
 		}
+		static const std::string getCallOrder() { return order; }
 	private:
 		static std::string order;
 	};

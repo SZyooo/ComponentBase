@@ -23,6 +23,8 @@ namespace component {
 			delete _loop_component;
 			_loop_component = nullptr;
 		}
+	protected:
+		IComponent* getLoopComponent() const { return _loop_component; }
 	private:
 		IComponent* _loop_component;
 		virtual void doLoop(bool loopFlag) = 0;
